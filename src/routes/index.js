@@ -1,8 +1,3 @@
-/**
- * Main Routes
- * Central routing configuration
- */
-
 const express = require('express');
 const bfhlRoutes = require('./bfhl.routes');
 const healthRoutes = require('./health.routes');

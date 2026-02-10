@@ -1,8 +1,3 @@
-/**
- * Express Application Configuration
- * Sets up middleware, routes, and error handling
- */
-
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');

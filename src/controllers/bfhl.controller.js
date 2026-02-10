@@ -1,16 +1,8 @@
-/**
- * BFHL Controller
- * Handles POST /bfhl endpoint logic
- */
-
 const logger = require('../utils/logger');
 const { createSuccessResponse, createErrorResponse } = require('../utils/helpers');
 const computationService = require('../services/computation.service');
 const aiService = require('../services/ai.service');
 
-/**
- * Handle POST /bfhl request
- */
 const handleBfhlRequest = async (req, res) => {
   try {
     const body = req.body;

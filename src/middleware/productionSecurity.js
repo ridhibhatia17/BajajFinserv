@@ -1,16 +1,7 @@
-/**
- * Production Security Middleware
- * Comprehensive security measures for production deployment
- */
-
 const logger = require('../utils/logger');
 const validator = require('validator');
 const config = require('../config/config');
 
-/**
- * Validate Content-Type header
- * Ensures requests have proper content-type for JSON
- */
 const validateContentType = (req, res, next) => {
   // Skip for GET requests and health checks
   if (req.method === 'GET' || req.path === '/health') {
@@ -40,10 +31,6 @@ const validateContentType = (req, res, next) => {
   next();
 };
 
-/**
- * Prevent empty body attacks
- * Ensures POST/PUT requests have valid body content
- */
 const validateBodyExists = (req, res, next) => {
   // Skip for GET requests and health checks
   if (req.method === 'GET' || req.path === '/health') {
@@ -73,10 +60,6 @@ const validateBodyExists = (req, res, next) => {
   next();
 };
 
-/**
- * Prevent prototype pollution attacks
- * Checks for dangerous property names in request body
- */
 const preventPrototypePollution = (req, res, next) => {
   const dangerousKeys = [
     '__proto__',
@@ -131,12 +114,6 @@ const preventPrototypePollution = (req, res, next) => {
   next();
 };
 
-/**
- * Sanitize AI input to prevent injection attacks
- * Removes dangerous characters and limits length
- * @param {string} input - User input string
- * @returns {string} Sanitized input
- */
 const sanitizeAIInput = (input) => {
   if (!input || typeof input !== 'string') {
     return '';
@@ -170,10 +147,6 @@ const sanitizeAIInput = (input) => {
   return sanitized;
 };
 
-/**
- * Validate request size
- * Already handled by express.json() limit, but log large payloads
- */
 const logRequestSize = (req, res, next) => {
   const contentLength = req.get('Content-Length');
   
@@ -188,10 +161,6 @@ const logRequestSize = (req, res, next) => {
   next();
 };
 
-/**
- * Security headers middleware
- * Additional security headers beyond helmet
- */
 const additionalSecurityHeaders = (req, res, next) => {
   // Prevent MIME type sniffing
   res.setHeader('X-Content-Type-Options', 'nosniff');

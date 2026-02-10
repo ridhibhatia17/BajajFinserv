@@ -1,15 +1,6 @@
-/**
- * Validation Middleware
- * Strict request validation for BFHL endpoint
- */
-
 const { createErrorResponse } = require('../utils/helpers');
 const logger = require('../utils/logger');
 
-/**
- * Validate POST /bfhl request
- * Must contain EXACTLY ONE key from: fibonacci, prime, lcm, hcf, AI
- */
 const validateBfhlRequest = (req, res, next) => {
   try {
     const body = req.body;
@@ -254,10 +245,10 @@ const validateBfhlRequest = (req, res, next) => {
           );
         }
         // Check for reasonable length (before sanitization)
-        if (value.length > 5000) {
+        if (value.length > 1000) {
           logger.warn(`Validation failed: AI value too long (${value.length} characters)`);
           return res.status(400).json(
-            createErrorResponse('AI value is too long (max 5000 characters)')
+            createErrorResponse('AI value is too long (max 1000 characters)')
           );
         }
         // Check for null bytes (security check)

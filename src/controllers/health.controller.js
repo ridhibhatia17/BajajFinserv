@@ -1,14 +1,6 @@
-/**
- * Health Controller
- * Handles GET /health endpoint
- */
-
 const logger = require('../utils/logger');
 const { createHealthResponse } = require('../utils/helpers');
 
-/**
- * Handle GET /health request
- */
 const handleHealthCheck = (req, res) => {
   try {
     logger.info('Health check requested');

@@ -1,15 +1,7 @@
-/**
- * Security Middleware
- * Rate limiting and security measures
- */
-
 const rateLimit = require('express-rate-limit');
 const config = require('../config/config');
 const logger = require('../utils/logger');
 
-/**
- * Rate limiter configuration
- */
 const rateLimiter = rateLimit({
   windowMs: config.rateLimit.windowMs,
   max: config.rateLimit.maxRequests,
@@ -30,9 +22,6 @@ const rateLimiter = rateLimit({
   }
 });
 
-/**
- * Request sanitization middleware
- */
 const sanitizeRequest = (req, res, next) => {
   // Remove any potential XSS or injection attempts
   if (req.body) {

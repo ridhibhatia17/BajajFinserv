@@ -1,16 +1,5 @@
-/**
- * Computation Service
- * Business logic for mathematical computations
- */
-
 const logger = require('../utils/logger');
 
-/**
- * Generate Fibonacci series up to n terms
- * Returns the full Fibonacci sequence
- * @param {number} n - Number of terms (must be positive integer)
- * @returns {number[]} Full Fibonacci series
- */
 const generateFibonacci = (n) => {
   try {
     // Strict validation
@@ -49,12 +38,6 @@ const generateFibonacci = (n) => {
   }
 };
 
-/**
- * Check if a number is prime using optimized algorithm
- * Uses 6k±1 optimization for O(√n) time complexity
- * @param {number} num - Number to check
- * @returns {boolean} True if prime, false otherwise
- */
 const isPrime = (num) => {
   // Numbers <= 1 are not prime
   if (num <= 1) return false;
@@ -76,13 +59,6 @@ const isPrime = (num) => {
   return true;
 };
 
-/**
- * Filter prime numbers from an array
- * Validates each element and uses efficient prime checking
- * Non-prime values are ignored (not included in result)
- * @param {number[]} numbers - Array of positive integers
- * @returns {number[]} Array containing only prime numbers
- */
 const filterPrimes = (numbers) => {
   try {
     // Validate input is array
@@ -115,13 +91,6 @@ const filterPrimes = (numbers) => {
   }
 };
 
-/**
- * Calculate GCD (Greatest Common Divisor) using Euclidean algorithm
- * Time complexity: O(log(min(a,b)))
- * @param {number} a - First positive integer
- * @param {number} b - Second positive integer
- * @returns {number} GCD of a and b
- */
 const gcd = (a, b) => {
   // Euclidean algorithm
   while (b !== 0) {
@@ -132,13 +101,6 @@ const gcd = (a, b) => {
   return a;
 };
 
-/**
- * Calculate HCF (Highest Common Factor) using Euclidean algorithm
- * Supports multiple numbers by applying GCD iteratively
- * HCF(a,b,c) = HCF(HCF(a,b), c)
- * @param {number[]} numbers - Array of at least 2 positive integers
- * @returns {number} HCF of all numbers
- */
 const calculateHCF = (numbers) => {
   try {
     // Validate input is array
@@ -183,27 +145,12 @@ const calculateHCF = (numbers) => {
   }
 };
 
-/**
- * Calculate LCM (Least Common Multiple) using GCD-based formula
- * Formula: LCM(a,b) = (a / GCD(a,b)) * b
- * Division before multiplication prevents overflow
- * @param {number} a - First positive integer
- * @param {number} b - Second positive integer
- * @returns {number} LCM of a and b
- */
 const lcm = (a, b) => {
   // Use formula: LCM = (a / GCD) * b to minimize overflow risk
   // Dividing first reduces the size before multiplication
   return (a / gcd(a, b)) * b;
 };
 
-/**
- * Calculate LCM of multiple numbers using GCD-based formula
- * Supports multiple numbers by applying LCM iteratively
- * LCM(a,b,c) = LCM(LCM(a,b), c)
- * @param {number[]} numbers - Array of at least 2 positive integers
- * @returns {number} LCM of all numbers
- */
 const calculateLCM = (numbers) => {
   try {
     // Validate input is array

@@ -1,8 +1,3 @@
-/**
- * Logger Utility
- * Winston-based logging configuration
- */
-
 const winston = require('winston');
 const config = require('../config/config');
 

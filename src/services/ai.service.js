@@ -1,8 +1,3 @@
-/**
- * AI Service
- * Google Gemini AI Integration
- */
-
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const logger = require('../utils/logger');
 const { sanitizeAIInput } = require('../middleware/productionSecurity');
@@ -27,12 +22,6 @@ try {
   logger.warn('AI service will use fallback responses');
 }
 
-/**
- * Trim response to a single word
- * Extracts the first meaningful word from the response
- * @param {string} response - AI response text
- * @returns {string} Single word
- */
 const trimToSingleWord = (response) => {
   if (!response || typeof response !== 'string') {
     return 'Unknown';
@@ -55,12 +44,6 @@ const trimToSingleWord = (response) => {
   return firstWord.charAt(0).toUpperCase() + firstWord.slice(1).toLowerCase();
 };
 
-/**
- * Fallback response generator (rule-based)
- * Used when Gemini API is unavailable or fails
- * @param {string} question - Question string
- * @returns {string} Single-word response
- */
 const generateFallbackResponse = (question) => {
   const lowerQuestion = question.toLowerCase().trim();
 
@@ -103,11 +86,6 @@ const generateFallbackResponse = (question) => {
   return 'Understood';
 };
 
-/**
- * Generate a single-word AI response using Google Gemini API
- * @param {string} question - Question string
- * @returns {Promise<string>} Single-word response
- */
 const generateAIResponse = async (question) => {
   try {
     // Validate input

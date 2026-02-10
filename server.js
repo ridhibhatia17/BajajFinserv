@@ -1,8 +1,3 @@
-/**
- * Server Entry Point
- * Initializes and starts the Express server
- */
-
 require('dotenv').config();
 const app = require('./app');
 const logger = require('./src/utils/logger');
