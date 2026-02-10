@@ -20,8 +20,8 @@ const validateContentType = (req, res, next) => {
   const contentType = req.get('Content-Type');
   
   if (!contentType) {
-    logger.warn('Content-Type header missing');
-    return res.status(400).json({
+    logger.warn('Content-Type header missing - returning 415');
+    return res.status(415).json({
       is_success: false,
       official_email: config.officialEmail,
       error: 'Content-Type header is required'
@@ -29,7 +29,7 @@ const validateContentType = (req, res, next) => {
   }
 
   if (!contentType.includes('application/json')) {
-    logger.warn(`Invalid Content-Type: ${contentType}`);
+    logger.warn(`Invalid Content-Type: ${contentType} - returning 415`);
     return res.status(415).json({
       is_success: false,
       official_email: config.officialEmail,

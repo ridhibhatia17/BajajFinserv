@@ -29,19 +29,9 @@ const validateBfhlRequest = (req, res, next) => {
       return res.status(400).json(createErrorResponse('Request body must contain exactly one key from: fibonacci, prime, lcm, hcf, AI'));
     }
 
-    // Filter out 'data' key to get only operation keys
-    const operationKeys = bodyKeys.filter(k => k !== 'data');
-    
-    // Check for exactly one operation key
-    if (operationKeys.length === 0) {
-      logger.warn('Validation failed: No operation key provided');
-      return res.status(400).json(
-        createErrorResponse('Request must contain exactly one key from: fibonacci, prime, lcm, hcf, AI')
-      );
-    }
-    
-    if (operationKeys.length > 1) {
-      logger.warn(`Validation failed: Multiple operation keys provided (${operationKeys.length}): ${operationKeys.join(', ')}`);
+    // Check for exactly one key
+    if (bodyKeys.length > 1) {
+      logger.warn(`Validation failed: Multiple keys provided (${bodyKeys.length}): ${bodyKeys.join(', ')}`);
       return res.status(400).json(
         createErrorResponse('Request must contain exactly one key from: fibonacci, prime, lcm, hcf, AI')
       );
@@ -49,7 +39,7 @@ const validateBfhlRequest = (req, res, next) => {
 
     // Define valid keys
     const validKeys = ['fibonacci', 'prime', 'lcm', 'hcf', 'AI'];
-    const key = operationKeys[0];
+    const key = bodyKeys[0];
 
     // Check if key is valid
     if (!validKeys.includes(key)) {

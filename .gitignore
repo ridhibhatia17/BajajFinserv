@@ -1,6 +1,6 @@
 # Dependencies
 node_modules/
-package-lock.json
+# package-lock.json  # Keep this for Render deployment - ensures consistent builds
 yarn.lock
 
 # Environment variables
